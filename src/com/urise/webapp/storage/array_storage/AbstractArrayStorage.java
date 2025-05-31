@@ -43,16 +43,12 @@ public abstract class AbstractArrayStorage extends AbstractStorage<Integer> {
     }
 
     @Override
-    public Resume get(String uuid) {
-        int resumeIndex = getIndex(uuid);
-        if(resumeIndex < 0) {
-            throw new NotExistStorageException(uuid);
-        }
+    protected Resume doGet(Integer resumeIndex) {
         return storage[resumeIndex];
     }
 
     @Override
-    public void doDelete(Integer resumeIndex) {
+    protected void doDelete(Integer resumeIndex) {
             fillDeletedElement(resumeIndex);
             storage[size - 1] = null;
             size--;
@@ -60,10 +56,8 @@ public abstract class AbstractArrayStorage extends AbstractStorage<Integer> {
 
 
     @Override
-    public List<Resume> getAllSorted() {
-        return  Arrays.stream(Arrays.copyOfRange(storage, 0, size))
-                .sorted()
-                .toList();
+    protected List<Resume> getCopyStorage() {
+        return Arrays.asList(Arrays.copyOfRange(storage, 0, size));
     }
 
     @Override
@@ -76,7 +70,7 @@ public abstract class AbstractArrayStorage extends AbstractStorage<Integer> {
         return searchKey >= 0 ;
     }
 
-    protected abstract Integer getIndex(String uuid);
+    protected abstract Integer getSearchKey(String uuid);
     protected abstract void insertElement(Resume r, int index);
     protected abstract void fillDeletedElement(int index);
 }
