@@ -1,54 +1,84 @@
 package com.urise.webapp.model;
 
+
+import com.urise.webapp.model.section.Section;
+
+import java.io.Serial;
+import java.io.Serializable;
+import java.util.EnumMap;
+import java.util.Map;
+import java.util.Objects;
 import java.util.UUID;
 
 /**
  * com.urise.webapp.model.Resume class
  */
-public class Resume implements Comparable<Resume>{
+public class Resume implements Comparable<Resume>, Serializable {
 
+    @Serial
+    private static final long serialVersionUID = 1L;
     // Unique identifier
     private final String uuid;
+    private final String fullName;
 
-    public Resume () {
-        this(UUID.randomUUID().toString());
+
+    private Map<ContactType, String> contacts = new EnumMap<>(ContactType.class);
+    private Map<SectionType, Section> sections = new EnumMap<>(SectionType.class);
+
+
+    public Resume(String fullName, Map<ContactType, String> contacts,
+                  Map<SectionType, Section> sections) {
+        this(UUID.randomUUID().toString(), fullName, contacts, sections);
     }
 
-    public Resume(String uuid) {
+    public Resume(String uuid,
+                  String fullName,
+                  Map<ContactType, String> contacts,
+                  Map<SectionType, Section> sections
+    ) {
         this.uuid = uuid;
+        this.fullName = fullName;
+        this.contacts = contacts;
+        this.sections = sections;
     }
 
     @Override
     public String toString() {
-        return uuid;
+        return uuid + " : " + fullName;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Resume resume = (Resume) o;
+        return Objects.equals(uuid, resume.uuid) && Objects.equals(fullName, resume.fullName);
     }
 
     @Override
     public int hashCode() {
-        return uuid.hashCode();
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if(obj == this) {
-            return true;
-        }
-
-        if(!(obj instanceof Resume resume)) {
-            return false;
-        }
-
-        return this.uuid.equals(resume.uuid);
+        return Objects.hash(uuid, fullName);
     }
 
     @Override
     public int compareTo(Resume o) {
-        return uuid.compareTo(o.getUuid());
+        return fullName.compareTo(o.fullName);
     }
-
-
 
     public String getUuid() {
         return uuid;
     }
+
+
+    public String getFullName() {
+        return fullName;
+    }
+
+    public String getContact(ContactType type) {
+        return contacts.get(type);
+    }
+
+    public Section getSections(SectionType type) {
+        return sections.get(type);
+    }
+
 }

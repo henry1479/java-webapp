@@ -1,16 +1,11 @@
 package com.urise.webapp.storage.array_storage;
 
-import com.urise.webapp.exception.ExistStorageException;
-import com.urise.webapp.exception.NotExistStorageException;
 import com.urise.webapp.exception.StorageException;
-import com.urise.webapp.model.Resume;
 import com.urise.webapp.storage.AbstractStorageTest;
 import com.urise.webapp.storage.Storage;
+import com.urise.webapp.storage.util.ResumeFabric;
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
-
-import static org.junit.Assert.*;
 
 public abstract class AbstractArrayStorageTest extends AbstractStorageTest {
 
@@ -23,13 +18,13 @@ public abstract class AbstractArrayStorageTest extends AbstractStorageTest {
     public void saveOverflow() {
         try {
             for (int i = 4; i <= AbstractArrayStorage.INIT_CAPACITY; i++) {
-                storage.save(new Resume());
+                storage.save(ResumeFabric.generate("UUID_" + i));
             }
         } catch (StorageException e) {
             Assert.fail();
         }
 
-        storage.save(new Resume());
+        storage.save(ResumeFabric.generate("Overflow"));
     }
 
 

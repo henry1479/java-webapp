@@ -4,6 +4,7 @@ import com.urise.webapp.model.Resume;
 import com.urise.webapp.storage.array_storage.ArrayStorage;
 import com.urise.webapp.storage.array_storage.SortedArrayStorage;
 import com.urise.webapp.storage.Storage;
+import com.urise.webapp.storage.util.ResumeFabric;
 
 /**
  *
@@ -13,9 +14,9 @@ public class MainArray {
     private static final Storage arrayStorage = new ArrayStorage();
 
     public static void main(String[] args) {
-        Resume r1 = new Resume("uuid1");
-        Resume r2 = new Resume("uuid2");
-        Resume r3 = new Resume("uuid3");
+        Resume r1 = ResumeFabric.generate("UUID_8");
+        Resume r2 = ResumeFabric.generate("UUID_9");
+        Resume r3 = ResumeFabric.generate("UUID_10");
 
         arrayStorage.save(r3);
         arrayStorage.save(r1);
