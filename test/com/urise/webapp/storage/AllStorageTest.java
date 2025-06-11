@@ -6,8 +6,7 @@ import com.urise.webapp.storage.array_storage.SortedArrayStorageTest;
 import com.urise.webapp.storage.collection_storage.ListStorageTest;
 import com.urise.webapp.storage.collection_storage.MapResumeStorageTest;
 import com.urise.webapp.storage.collection_storage.MapUuidStorageTest;
-import com.urise.webapp.storage.file_storage.ObjectFileStorage;
-import com.urise.webapp.storage.file_storage.ObjectFileStorageTest;
+import com.urise.webapp.storage.file_storage.FileStorageTest;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
@@ -20,7 +19,7 @@ import org.junit.runners.Suite;
         SortedArrayStorageTest.class,
         MapUuidStorageTest.class,
         MapResumeStorageTest.class,
-        ObjectFileStorageTest.class
+        FileStorageTest.class
 })
 public class AllStorageTest {
 }
