@@ -2,6 +2,8 @@ package com.urise.webapp.model.section.organization;
 
 import com.urise.webapp.util.DateUtil;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
 import java.io.Serial;
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -10,7 +12,8 @@ import java.util.Objects;
 
 import static com.urise.webapp.util.DateUtil.NOW;
 
-public class Position  implements Serializable {
+@XmlAccessorType(XmlAccessType.FIELD)
+public class Position implements Serializable {
     @Serial
     private static final long serialVersionUID = 1L;
     private final LocalDate startDate;

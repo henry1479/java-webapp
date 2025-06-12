@@ -35,5 +35,6 @@
       </library>
     </orderEntry>
     <orderEntry type="library" name="github.javafaker" level="project" />
+    <orderEntry type="library" name="javax.xml.bind.jaxb.api" level="project" />
   </component>
 </module>
