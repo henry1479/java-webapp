@@ -1,9 +1,11 @@
 package com.urise.webapp.model.section.organization;
 
 import com.urise.webapp.util.DateUtil;
+import com.urise.webapp.util.LocalDateAdapter;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
+import jakarta.xml.bind.annotation.XmlAccessType;
+import jakarta.xml.bind.annotation.XmlAccessorType;
+import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import java.io.Serial;
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -16,10 +18,12 @@ import static com.urise.webapp.util.DateUtil.NOW;
 public class Position implements Serializable {
     @Serial
     private static final long serialVersionUID = 1L;
-    private final LocalDate startDate;
-    private final LocalDate endDate;
-    private final String title;
-    private final String description;
+    @XmlJavaTypeAdapter(LocalDateAdapter.class)
+    private  LocalDate startDate;
+    @XmlJavaTypeAdapter(LocalDateAdapter.class)
+    private  LocalDate endDate;
+    private  String title;
+    private  String description;
 
     public Position(LocalDate startDate, LocalDate endDate, String title, String description) {
         Objects.requireNonNull(startDate, "StartDate must not be null");
@@ -29,6 +33,9 @@ public class Position implements Serializable {
         this.endDate = endDate;
         this.title = title;
         this.description = description == null ? "" : description;
+    }
+
+    public Position() {
     }
 
     public Position(int startYear, Month startMonth, String title, String description) {
@@ -43,6 +50,22 @@ public class Position implements Serializable {
     public boolean equals(Object o) {
         if (!(o instanceof Position position)) return false;
         return Objects.equals(startDate, position.startDate) && Objects.equals(endDate, position.endDate) && Objects.equals(title, position.title) && Objects.equals(description, position.description);
+    }
+
+    public LocalDate getStartDate() {
+        return startDate;
+    }
+
+    public LocalDate getEndDate() {
+        return endDate;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public String getDescription() {
+        return description;
     }
 
     @Override

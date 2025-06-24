@@ -127,8 +127,15 @@ public class ResumeFabric {
 
 
     private static List<Position> getPositions(int numberOfPositions) {
-        List<Position> result = new ArrayList<>(numberOfPositions);
-        return result.stream().map(pos -> getPosition()).toList();
+        List<Position> result = new ArrayList<>() {{
+          add(getPosition());
+          add(getPosition());
+          add(getPosition());
+          add(getPosition());
+          add(getPosition());
+        }};
+
+        return result;
     }
 
 

@@ -1,13 +1,15 @@
 package com.urise.webapp.model.section;
 
+
 import java.io.Serial;
 import java.util.List;
 import java.util.Objects;
 
-public class ListSection extends Section{
+
+public class ListSection extends Section {
     @Serial
     private static final long serialVersionUID = 1L;
-    private final List<String> list;
+    private List<String> list;
 
 
     public ListSection(List<String> list) {
@@ -15,6 +17,8 @@ public class ListSection extends Section{
         this.list = list;
     }
 
+    public ListSection() {
+    }
 
     @Override
     public boolean equals(Object o) {

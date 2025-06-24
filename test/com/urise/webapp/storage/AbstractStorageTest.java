@@ -8,7 +8,9 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.io.File;
-import java.util.*;
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -20,15 +22,13 @@ public abstract class AbstractStorageTest {
     protected Storage storage;
 
 
-
-
     private final static Resume RESUME_4 = ResumeFabric.generate("UUID_4");
 
     private final static Resume RESUME_1 = ResumeFabric.generate("UUID_1");
 
     private final static Resume RESUME_2 = ResumeFabric.generate("UUID_2");
 
-    private final static Resume RESUME_3 = ResumeFabric.generate("  UUID_3");
+    private final static Resume RESUME_3 = ResumeFabric.generate("UUID_3");
 
 
     public AbstractStorageTest(Storage storage) {
@@ -37,6 +37,7 @@ public abstract class AbstractStorageTest {
 
     @Before
     public void setUp() throws Exception {
+
         storage.clear();
         storage.save(RESUME_3);
         storage.save(RESUME_1);

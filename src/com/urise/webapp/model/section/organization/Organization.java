@@ -2,8 +2,8 @@ package com.urise.webapp.model.section.organization;
 
 import com.urise.webapp.model.section.util.Link;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
+import jakarta.xml.bind.annotation.XmlAccessType;
+import jakarta.xml.bind.annotation.XmlAccessorType;
 import java.io.Serial;
 import java.io.Serializable;
 import java.util.List;
@@ -14,8 +14,9 @@ public class Organization implements Serializable {
 
     @Serial
     private static final long serialVersionUID = 1L;
-    private final Link homePage;
-    private final List<Position> positions;
+    private Link homePage;
+
+    private List<Position> positions;
 
 
 
@@ -23,6 +24,9 @@ public class Organization implements Serializable {
     public Organization(String name, String url, List<Position> positions) {
         this.homePage = new Link(name, url);
         this.positions = positions;
+    }
+
+    public Organization() {
     }
 
     public Organization(String name, String url, Position ...positions) {
@@ -44,8 +48,19 @@ public class Organization implements Serializable {
         return Objects.equals(homePage, that.homePage) && Objects.equals(positions, that.positions);
     }
 
+    public List<Position> getPositions() {
+        return positions;
+    }
+
+    public Link getHomePage() {
+        return homePage;
+    }
+
     @Override
     public int hashCode() {
         return Objects.hash(homePage, positions);
     }
+
+
+
 }
