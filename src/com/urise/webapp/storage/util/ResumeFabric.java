@@ -46,8 +46,8 @@ public class ResumeFabric {
         return new Resume(
                 uuid,
                 fullName,
-                getContacts(),
-                getSections()
+                getContacts()
+//                getSections()
         );
     }
 

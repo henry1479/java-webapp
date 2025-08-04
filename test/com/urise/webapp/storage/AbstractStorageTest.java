@@ -1,5 +1,6 @@
 package com.urise.webapp.storage;
 
+import com.urise.webapp.Config;
 import com.urise.webapp.exception.ExistStorageException;
 import com.urise.webapp.exception.NotExistStorageException;
 import com.urise.webapp.model.Resume;
@@ -17,18 +18,18 @@ import static org.junit.Assert.assertTrue;
 
 public abstract class AbstractStorageTest {
 
-    protected final static File STORAGE_DIR = new File("/home/henry1479/Рабочий стол/Junior Java-разработчик веб-приложений - BaseJava/code/java-webapp/src/storage");
+    protected final static File STORAGE_DIR  = Config.get().getStorageDir();
 
     protected Storage storage;
 
 
-    private final static Resume RESUME_4 = ResumeFabric.generate("UUID_4");
+    private final static Resume RESUME_4 = ResumeFabric.generate("UUID_4", "James Bond");
 
-    private final static Resume RESUME_1 = ResumeFabric.generate("UUID_1");
+    private final static Resume RESUME_1 = ResumeFabric.generate("UUID_1", "Rocky Balboa");
 
-    private final static Resume RESUME_2 = ResumeFabric.generate("UUID_2");
+    private final static Resume RESUME_2 = ResumeFabric.generate("UUID_2", "Lopez Tornado");
 
-    private final static Resume RESUME_3 = ResumeFabric.generate("UUID_3");
+    private final static Resume RESUME_3 = ResumeFabric.generate("UUID_3", "Alexander Usyk");
 
 
     public AbstractStorageTest(Storage storage) {
@@ -60,7 +61,7 @@ public abstract class AbstractStorageTest {
 
     @Test
     public void update() {
-        Resume newResume = ResumeFabric.generate("UUID_2");
+        Resume newResume = ResumeFabric.generate("UUID_2", "Terry Pratchett");
         storage.update(newResume);
         assertTrue(newResume.equals(storage.get("UUID_2")));
     }
